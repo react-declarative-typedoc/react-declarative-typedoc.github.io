@@ -1,0 +1,66 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>react-declarative - v2.6.90</title><meta name="description" content="Documentation for react-declarative"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">react-declarative - v2.6.90</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h2>react-declarative - v2.6.90</h2></div><div class="tsd-panel tsd-typography"><a id="md:just-for-you-known" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Just for you known<a href="#md:just-for-you-known" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><blockquote>
+<p>The <code>react-declarative</code> is not just a form builder. This one is a huge framework with <a href="media/HeroLayout.tsx">dashboard adaptive cards builder</a>, crud-based <a href="./components/List">List component</a> and more.</p>
+</blockquote>
+<a id="md:adding-a-new-field-type" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Adding a new field type<a href="#md:adding-a-new-field-type" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Make changes by analogy sequentially in the following files</p>
+<a id="md:create-a-new-field" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Create a new field<a href="#md:create-a-new-field" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ol start="0">
+<li>
+<p><strong><a href="media/IField.ts">model/IField.ts</a></strong> - Add new field properties</p>
+</li>
+<li>
+<p><strong><a href="media/createField.tsx">config/createField.tsx</a></strong> - File registration (during execution)</p>
+</li>
+<li>
+<p><strong><a href="media/initialValue.ts">config/initialValue.ts</a></strong> - Default value for the field</p>
+</li>
+<li>
+<p><strong><a href="media/isStatefull.ts">config/isStatefull.ts</a></strong> - Mark If you're creating a field, not a layout</p>
+</li>
+<li>
+<p><strong><a href="media/FieldType.ts">model/FieldType.ts</a></strong> - Adding a field entry to enum</p>
+</li>
+<li>
+<p><strong><a href="media/TypedField.ts">model/TypedField.ts</a></strong> - Strong typing declaration for the userspace</p>
+</li>
+</ol>
+<a id="md:register-field-slot" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Register field slot<a href="#md:register-field-slot" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ol start="0">
+<li>
+<p><strong><a href="./components/One/slots/CheckBoxSlot">components/One/slots/CheckBoxSlot</a></strong> - Duplicate this folder and update naming</p>
+</li>
+<li>
+<p><strong><a href="media/ISlotFactoryContext.ts">components/One/components/ISlotFactoryContext.ts</a></strong> - Update slot context interface</p>
+</li>
+<li>
+<p><strong><a href="media/SlotContext.ts">components/One/components/SlotFactory/SlotContext.ts</a></strong> - Update slots context value</p>
+</li>
+</ol>
+<a id="md:composition-hierarchy" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Composition hierarchy<a href="#md:composition-hierarchy" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>In order of composition during execution</p>
+<ol start="0">
+<li>
+<p><strong>IField</strong> - Field retrieved from the userspace</p>
+</li>
+<li>
+<p><strong>IEntity</strong> - A field connected to the instance of the <code>One</code> component</p>
+</li>
+<li>
+<p><strong>IManaged</strong> - A wrapper over the <code>change</code> callback and the current <code>object</code>, designed to prevent recursive repaints and provide a convenient api for a field developer</p>
+</li>
+</ol>
+<p><strong>IMPORTANT:</strong> TypedField only checks at the time of static type checking. The internal implementation of the One component performs exactly the composition of objects without any typecheck</p>
+<p><strong>Also</strong> The Field Type.Init allows <code>defaultValue</code> the value for Field Type.Component fields if it emits several properties in onChange object. The FieldType.Phony keeps the field without any <code>defaultValue</code> so <code>Object.keys(data)</code> will not see It</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:just-for-you-known"><span>Just for you known</span></a><ul><li><a href="#md:adding-a-new-field-type"><span>Adding a new field type</span></a></li><li><ul><li><a href="#md:create-a-new-field"><span>Create a new field</span></a></li><li><a href="#md:register-field-slot"><span>Register field slot</span></a></li></ul></li><li><a href="#md:composition-hierarchy"><span>Composition hierarchy</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>react-declarative - v2.6.90</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body><!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(97715084, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/97715084" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter --></html>
